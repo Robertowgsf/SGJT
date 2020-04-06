@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="container__header">
+        <span class="fas fa-align-justify"></span>
+        <span class="header-title">{{listDefinition.pageTitle}}</span>
+    </div>
+    <div class="container__body">
+        <table class="list">
+            <tr class="list__row">
+                <th class="list__header" *ngFor="let column of listDefinition.columns">{{column.header}}</th>
+            </tr>
+            <tr class="list__row" *ngFor="let data of listDefinition.dataSource" (click)="goToRegister(data.id)">
+                <td class="list__data" *ngFor="let column of listDefinition.columns">
+                    {{data[column.property]}}
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

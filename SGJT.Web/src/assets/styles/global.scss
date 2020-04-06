@@ -1,0 +1,40 @@
+@import './variables.scss';
+
+html {
+    min-height: 100vh;
+}
+
+body {
+    font-family: $font-family;
+    font-size: $font-size;
+    line-height: $line-height;
+    color: $font-color-primary;
+    margin: 0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.container {
+    border: 1px solid $border-gray;
+}
+
+.container__header {
+    background-color: $gray-secondary;
+    border-bottom: 1px solid $border-gray;
+}
+
+.container__header,
+.container__body {
+    padding: 15px;
+}
+
+.container__body {
+    background-color: $white;
+}
+
+.header-title {
+    padding-left: 10px;
+    padding-right: 10px;
+}

@@ -1,0 +1,27 @@
+<div class="main">
+    <div class="navigation">
+        <ul class="navbar" *ngFor="let menu of menus">
+            <li class="navbar__item" *ngIf="menu.submenus.length > 0" (click)="toggleMenu($event)">
+                <a class="navbar__link dropdown">
+                    {{menu.name}}
+                    <span class="fas fa-chevron-left dropdown__icon"></span>
+                </a>
+                <ul class="navbar__dropdown">
+                    <li class="navbar__item-dropdown" *ngFor="let submenu of menu.submenus">
+                        <a class="navbar__link-dropdown" [routerLink]="submenu.route" routerLinkActive="selected">
+                            <span>{{submenu.name}}</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="navbar__item" *ngIf="menu.submenus.length == 0">
+                <a class="navbar__link" [routerLink]="menu.route" routerLinkActive="selected">
+                    {{menu.name}}
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="content">
+        <router-outlet></router-outlet>
+    </div>
+</div>
