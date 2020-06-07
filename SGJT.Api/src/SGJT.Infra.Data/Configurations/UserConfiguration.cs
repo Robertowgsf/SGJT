@@ -11,6 +11,9 @@ namespace SGJT.Infra.Data.Configurations
             builder.Property(a => a.Name)
                 .HasColumnType("varchar(100)")
                 .IsRequired();
+            builder.Property(a => a.DailyHours)
+                .HasColumnType("int")
+                .IsRequired();
         }
     }
 }

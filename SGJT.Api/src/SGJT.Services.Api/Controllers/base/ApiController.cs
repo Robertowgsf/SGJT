@@ -4,33 +4,14 @@ namespace SGJT.Services.Api.Controllers
 {
     public abstract class ApiController : ControllerBase
     {
-        protected new IActionResult Response(object result = null, bool success = true)
+        protected new IActionResult Response(object result = null)
         {
-            var response = new
-            {
-                success,
-                data = result
-            };
-
-            if (success)
-            {
-                return Ok(response);
-            }
-            else
-            {
-                return BadRequest(response);
-            }
+            return Ok(result);
         }
 
-        protected new IActionResult Response(object result, bool success, int statusCode)
+        protected new IActionResult Response(object result, int statusCode, bool ok = false)
         {
-            var response = new
-            {
-                success,
-                data = result
-            };
-
-            return StatusCode(statusCode, response);
+            return StatusCode(statusCode, result);
         }
     }
 }

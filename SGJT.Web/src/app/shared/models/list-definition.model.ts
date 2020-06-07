@@ -1,16 +1,15 @@
-import { ColumnDefinition } from './column-definition.model';
+import { ListColumnDefinition } from './list-column-definition.model';
 import { Entity } from './base/entity.model';
 
 export class ListDefinition {
-    pageTitle: string;
+    title: string;
     registerURL: string;
-    columns: Array<ColumnDefinition>;
+    columns: Array<ListColumnDefinition>;
     dataSource: Array<Entity>;
 
-    constructor(pageTitle: string, registerURL: string, columns: Array<ColumnDefinition>, dataSource: Array<Entity>) {
-        this.pageTitle = pageTitle;
+    constructor(title: string, registerURL: string, columns: Array<ListColumnDefinition>) {
+        this.title = title;
         this.registerURL = registerURL;
         this.columns = columns;
-        this.dataSource = dataSource;
     }
 }

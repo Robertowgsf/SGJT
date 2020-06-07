@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { ListDefinition } from 'src/app/shared/models/list-definition.model';
 
 @Component({
@@ -13,11 +13,11 @@ export class ListComponent implements OnInit {
   @Input() listDefinition: ListDefinition;
 
   constructor(
-    private router: Router,
-    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    window.getSelection().removeAllRanges();
   }
 
   goToRegister(id: number) {

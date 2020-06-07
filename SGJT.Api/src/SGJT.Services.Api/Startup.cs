@@ -31,6 +31,9 @@ namespace SGJT.Services.Api
 
             // Automapper Settings.
             services.AddAutoMapperSetup();
+
+            // Swagger Config.
+            services.AddSwaggerSetup();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,6 +59,8 @@ namespace SGJT.Services.Api
             {
                 endpoints.MapControllers();
             });
+
+            app.UseSwaggerSetup();
         }
     }
 }

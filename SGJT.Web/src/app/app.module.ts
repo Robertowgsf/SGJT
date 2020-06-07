@@ -4,6 +4,7 @@ import { AppComponent } from './app.component';
 import { Routes, RouterModule } from '@angular/router';
 import { CoreModule } from './core/core.module';
 import { CanDeactivateGuard } from './shared/guards/can-deactivate-guard.service';
+import { HttpClientModule } from '@angular/common/http';
 
 // const routes: Routes = [
 //   { path: 'list', loadChildren: () => import('./features/list/list.module').then(m => m.ListModule) },
@@ -22,6 +23,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     BrowserModule,
     CoreModule,
+    HttpClientModule
   ],
   providers: [
     CanDeactivateGuard

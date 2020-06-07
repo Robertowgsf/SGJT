@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SGJT.Application.Interfaces;
 using SGJT.Application.ViewModels;
 
@@ -28,9 +27,6 @@ namespace SGJT.Services.Api.Controllers
         {
             var objects = _userAppService.Get();
 
-            if (objects == null)
-                return Response(objects, false, StatusCodes.Status404NotFound);
-
             return Response(objects);
         }
 
@@ -38,9 +34,6 @@ namespace SGJT.Services.Api.Controllers
         public IActionResult Get(long id)
         {
             var obj = _userAppService.Get(id);
-
-            if (obj == null)
-                return Response(obj, false, StatusCodes.Status404NotFound);
 
             return Response(obj);
         }

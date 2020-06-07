@@ -9,8 +9,6 @@ namespace SGJT.Services.Api.Configurations
     {
         public static void AddAutoMapperSetup(this IServiceCollection services)
         {
-            if (services == null) throw new ArgumentNullException(nameof(services));
-
             services.AddAutoMapper(typeof(DomainToViewModelMappingProfile), typeof(ViewModelToDomainMappingProfile));
         }
     }
