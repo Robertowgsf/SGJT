@@ -1,0 +1,39 @@
+@import './forms-variables.scss';
+
+.form-group {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    margin-bottom: 15px;
+}
+.form-group:last-child {
+    margin-bottom: 0;
+}
+.form-label {
+    display: flex;
+    align-items: center;
+}
+.form-control {
+    border: 1px solid $frmCtrl-border-color;
+    padding: 6px 12px;
+    border-radius: 0.2rem;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    line-height: 1.5;
+}
+.form-control:focus {
+    outline: 0;
+    border-color: $frmCtrl-highlight-primary-border;
+    box-shadow: 0 0 0 0.2rem $frmCtrl-highlight-primary;
+}
+.form-buttons {
+    display: grid;
+    grid-auto-flow: column;
+    grid-column-gap: 10px;
+    grid-auto-columns: max-content;
+    justify-content: center;
+}
+.invalid-feedback {
+    grid-column-start: 2;
+    margin-top: .25rem;
+    font-size: 80%;
+    color: $danger;
+}

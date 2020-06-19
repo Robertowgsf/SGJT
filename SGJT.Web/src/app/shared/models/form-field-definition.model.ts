@@ -1,11 +1,13 @@
 export class FormFieldDefinition {
     name: string;
     nickname: string;
-    value: any;
+    placeholder: string;
+    type: string;
 
-    constructor(name: string, nickname: string, value: any) {
+    constructor(name: string, nickname: string, placeholder: string, type: string) {
         this.name = name;
         this.nickname = nickname;
-        this.value = value;
+        this.placeholder = placeholder;
+        this.type = type;
     }
 }

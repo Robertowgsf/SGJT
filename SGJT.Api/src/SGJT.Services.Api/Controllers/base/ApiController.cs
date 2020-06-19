@@ -9,7 +9,7 @@ namespace SGJT.Services.Api.Controllers
             return Ok(result);
         }
 
-        protected new IActionResult Response(object result, int statusCode, bool ok = false)
+        protected new IActionResult Response(object result, int statusCode)
         {
             return StatusCode(statusCode, result);
         }

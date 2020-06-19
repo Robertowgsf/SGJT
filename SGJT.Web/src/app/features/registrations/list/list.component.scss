@@ -4,22 +4,18 @@
     width: 100%;
     border-collapse: collapse;
 }
-
 .list__row {
     cursor: pointer;
 }
-
 .list__row:nth-child(even) {
     background: $gray-secondary;
 }
-
 .list__header,
 .list__data {
     text-align: left;
     padding: .75rem;
     border-bottom: 1px solid $border-gray;
 }
-
 .list__header {
     border-top: 1px solid $border-gray;
     border-bottom: 2px solid $border-gray;

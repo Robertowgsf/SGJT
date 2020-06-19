@@ -1,0 +1,70 @@
+@import './buttons-variables.scss';
+
+.btn {
+    user-select: none;
+   -webkit-user-select: none;
+   cursor: pointer;
+   border: 1px solid transparent;
+   border-radius: 0.2rem;
+   transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+   padding: 4px 8px;
+   line-height: 1.5;
+}
+.btn:focus {
+   outline: 0;
+}
+.btn:disabled {
+    cursor: auto;
+    opacity: 90%;
+}
+.btn-text {
+    padding-left: 4px;
+}
+.btn-primary {
+    color: #fff;
+    background-color: $btn-primary;
+    border-color: $btn-primary;
+}
+.btn-primary:hover {
+    background-color: $btn-primary-hover;
+    border-color: $btn-primary-active;
+}
+.btn-primary:active {
+    background-color: $btn-primary-active;
+    border-color: $btn-primary-active-border;
+}
+.btn-primary:focus {
+    box-shadow: 0 0 0 0.2rem $btn-primary-focus;
+}
+.btn-success {
+    color: #fff;
+    background-color: $btn-success;
+    border-color: $btn-success;
+}
+.btn-success:not(:disabled):hover {
+    background-color: $btn-success-hover;
+    border-color: $btn-success-active;
+}
+.btn-success:not(:disabled):active {
+    background-color: $btn-success-active;
+    border-color: $btn-success-active-border;
+}
+.btn-success:not(:disabled):focus {
+    box-shadow: 0 0 0 0.2rem $btn-success-focus;
+}
+.btn-danger {
+    color: #fff;
+    background-color: $btn-danger;
+    border-color: $btn-danger;
+}
+.btn-danger:hover {
+    background-color: $btn-danger-hover;
+    border-color: $btn-danger-active;
+}
+.btn-danger:active {
+    background-color: $btn-danger-active;
+    border-color: $btn-danger-active-border;
+}
+.btn-danger:focus {
+    box-shadow: 0 0 0 0.2rem $btn-danger-focus;
+}

@@ -1,6 +1,9 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using FluentValidation.Results;
 using SGJT.Application.Interfaces;
+using SGJT.Application.Validators;
+using SGJT.Application.Validators.User;
 using SGJT.Application.ViewModels;
 using SGJT.Domain.Entities;
 using SGJT.Domain.Interfaces.Repositories;
@@ -12,19 +15,28 @@ namespace SGJT.Application.Services
     {
         private readonly IMapper _mapper;
         private readonly IRepository<User> _userRepository;
+        private readonly AddUserValidator _addUserValidator;
 
-        public UserAppService(IMapper mapper, IRepository<User> userRepository)
+        public UserAppService(IMapper mapper, IRepository<User> userRepository, AddUserValidator addUserValidator)
         {
             _mapper = mapper;
             _userRepository = userRepository;
+            _addUserValidator = addUserValidator;
         }
 
-        public void Add(UserViewModel obj)
+        public IList<ValidationError> Add(UserViewModel obj)
         {
-            var user = _mapper.Map<User>(obj);
+            ValidationResult validation = _addUserValidator.Validate(obj);
 
-            _userRepository.Add(user);
-            _userRepository.SaveChanges();
+            if (validation.IsValid)
+            {
+                var user = _mapper.Map<User>(obj);
+
+                _userRepository.Add(user);
+                _userRepository.SaveChanges();
+            }
+
+            return validation.GetValidationResultErrors();
         }
 
         public UserViewModel Get(long id)
@@ -43,12 +55,19 @@ namespace SGJT.Application.Services
             return usersViewModel;
         }
 
-        public void Update(UserViewModel obj)
+        public IList<ValidationError> Update(UserViewModel obj)
         {
-            var user = _mapper.Map<User>(obj);
+            ValidationResult validation = _addUserValidator.Validate(obj);
 
-            _userRepository.Update(user);
-            _userRepository.SaveChanges();
+            if (validation.IsValid)
+            {
+                var user = _mapper.Map<User>(obj);
+
+                _userRepository.Update(user);
+                _userRepository.SaveChanges();
+            }
+
+            return validation.GetValidationResultErrors();
         }
 
         public void Remove(long id)

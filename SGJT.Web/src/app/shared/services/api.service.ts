@@ -25,6 +25,6 @@ export abstract class ApiService {
     }
 
     delete(id: number): Observable<any> {
-        return this.http.delete(`${environment.apiUrl}${this.endpoint}/?id=${id}`, { headers: this.headers })
+        return this.http.delete(`${environment.apiUrl}${this.endpoint}/${id}`, { headers: this.headers })
     }
 }

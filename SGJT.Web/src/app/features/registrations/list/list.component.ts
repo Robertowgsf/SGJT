@@ -7,7 +7,6 @@ import { ListDefinition } from 'src/app/shared/models/list-definition.model';
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
-
 export class ListComponent implements OnInit {
 
   @Input() listDefinition: ListDefinition;

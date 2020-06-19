@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/shared/models/user.model';
 import { UserService } from 'src/app/shared/services/user.service';
-import { ListColumnDefinition } from 'src/app/shared/models/list-column-definition.model';
 import { ListDefinition } from 'src/app/shared/models/list-definition.model';
 import { ActivatedRoute, Params } from '@angular/router';
 import { FormDefinition } from 'src/app/shared/models/form-definition.model';
 import { FormFieldDefinition } from 'src/app/shared/models/form-field-definition.model';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-user-register',
@@ -20,30 +21,20 @@ export class UserRegisterComponent implements OnInit {
   userFormName = "Usuários";
   userFormModel = new User();
   userFormFields = [
-    new FormFieldDefinition("name", "Nome", this.userFormModel.name),
-    new FormFieldDefinition("dailyHours", "Horas Diárias", this.userFormModel.dailyHours)
+    new FormFieldDefinition("name", "Nome", "Digite um nome", "text"),
+    new FormFieldDefinition("dailyHours", "Horas Diárias", "Digite a quantidade de horas diárias", "number")
   ];
-  userFormDefinition = new FormDefinition(this.userFormName, this.userFormModel, this.userFormFields);
-
-  // Definição dos projetos.
-  // projectTitle = "Projetos";
-  // projectRegisterURL = "registrations/register/project";
-  // projectColumns = [
-  //   new ListColumnDefinition("Nome", "name"),
-  //   new ListColumnDefinition("Status", "status"),
-  //   new ListColumnDefinition("Horas Trabalhadas", "workedHours"),
-  //   new ListColumnDefinition("Meta", "goal")
-  // ];
-  // projectModel = new Project();
+  userFormGroup: FormGroup;
+  userFormDefinition: FormDefinition;
 
   constructor(
     private userService: UserService,
-    // private projectService: ProjectService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private fb: FormBuilder
   ) { }
 
   ngOnInit(): void {
-    // this.listDefinition.push(new ListDefinition("Projetos", "registrations/register/project", this.projectColumns))
+    this.createFormDefinition();
 
     this.route.params.subscribe((params: Params) => {
       let id = params['id'];
@@ -51,18 +42,28 @@ export class UserRegisterComponent implements OnInit {
       if (id) {
         this.userService.get(id).subscribe(user => {
           this.userFormModel = user as User;
-          this.userFormDefinition.model = this.userFormModel;
+          this.createFormDefinition(user);
         });
       }
     });
   }
 
-  // salvar() {
-
-  // }
-
-  // remover() {
-
-  // }
-
+  createFormDefinition(user = null) {
+    if (user) {
+      this.userFormGroup = this.fb.group({
+        id: [this.userFormModel.id],
+        name: [this.userFormModel.name],
+        dailyHours: [this.userFormModel.dailyHours]
+      });
+    }
+    else {
+      this.userFormGroup = this.fb.group({
+        id: [],
+        name: [],
+        dailyHours: []
+      });
+    }
+    
+    this.userFormDefinition = new FormDefinition(this.userFormName, this.userFormModel, this.userFormFields, this.userFormGroup, this.userService);
+  }
 }

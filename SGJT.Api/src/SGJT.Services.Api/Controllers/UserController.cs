@@ -17,7 +17,12 @@ namespace SGJT.Services.Api.Controllers
         [HttpPost]
         public IActionResult Add([FromBody]UserViewModel obj)
         {
-            _userAppService.Add(obj);
+            var validationErrors = _userAppService.Add(obj);
+
+            if (validationErrors.Count > 0)
+            {
+                return Response(validationErrors, 400);
+            }
 
             return Response();
         }
@@ -35,13 +40,23 @@ namespace SGJT.Services.Api.Controllers
         {
             var obj = _userAppService.Get(id);
 
+            if (obj == null)
+            {
+                return Response(obj, 404);
+            }
+
             return Response(obj);
         }
 
         [HttpPut]
         public IActionResult Update([FromBody]UserViewModel obj)
         {
-            _userAppService.Update(obj);
+            var validationErrors = _userAppService.Update(obj);
+
+            if (validationErrors.Count > 0)
+            {
+                return Response(validationErrors, 400);
+            }
 
             return Response();
         }

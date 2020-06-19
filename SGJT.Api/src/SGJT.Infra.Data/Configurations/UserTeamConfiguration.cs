@@ -9,15 +9,11 @@ namespace SGJT.Infra.Data.Configurations
         public void Configure(EntityTypeBuilder<UserTeam> builder)
         {
             builder
-                .HasKey(a => new { a.UserId, a.TeamId });
-            builder
                 .HasOne(a => a.User)
-                .WithMany(b => b.UserTeams)
-                .HasForeignKey(a => a.UserId);
+                .WithMany(b => b.UserTeams);
             builder
                 .HasOne(a => a.Team)
-                .WithMany(b => b.UserTeams)
-                .HasForeignKey(a => a.TeamId);
+                .WithMany(b => b.UserTeams);
         }
     }
 }

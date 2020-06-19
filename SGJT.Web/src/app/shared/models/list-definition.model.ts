@@ -6,6 +6,7 @@ export class ListDefinition {
     registerURL: string;
     columns: Array<ListColumnDefinition>;
     dataSource: Array<Entity>;
+    buttons: Array<ListColumnDefinition>;
 
     constructor(title: string, registerURL: string, columns: Array<ListColumnDefinition>) {
         this.title = title;

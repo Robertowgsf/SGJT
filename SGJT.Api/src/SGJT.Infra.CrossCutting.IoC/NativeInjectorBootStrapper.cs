@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SGJT.Application.Interfaces;
 using SGJT.Application.Services;
+using SGJT.Application.Validators.User;
 using SGJT.Domain.Entities;
 using SGJT.Domain.Interfaces.Repositories;
 using SGJT.Infra.Data.Contexts;
@@ -14,6 +15,7 @@ namespace SGJT.Infra.CrossCutting.IoC
         {
             // Application
             services.AddScoped<IUserAppService, UserAppService>();
+            services.AddSingleton<AddUserValidator>();
 
             // Infra - Data.
             services.AddScoped<SGJTContext>();
