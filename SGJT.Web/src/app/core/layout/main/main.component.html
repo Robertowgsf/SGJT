@@ -1,0 +1,13 @@
+<div class="main">
+    <div class="navigation">
+        <app-navbar [menus]="menus"></app-navbar>
+        <div class="logout">
+            <a class="navbar__link" (click)="logout()">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+        </div>
+    </div>
+    <div class="content">
+        <router-outlet></router-outlet>
+    </div>
+</div>

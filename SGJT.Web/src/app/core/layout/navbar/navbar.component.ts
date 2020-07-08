@@ -17,7 +17,7 @@ export class NavbarComponent implements OnInit {
 
   toggleMenu(event) {
     if (event.target.classList.contains("dropdown") || event.target.classList.contains("dropdown__icon")) {
-      event.currentTarget.classList.toggle('open');
+      event.currentTarget.classList.toggle("open");
     }
   }
 }

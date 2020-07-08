@@ -1,15 +1,8 @@
-﻿using SGJT.Application.Validators;
-using SGJT.Application.ViewModels;
-using System.Collections.Generic;
+﻿using SGJT.Application.ViewModels;
 
 namespace SGJT.Application.Interfaces
 {
-    public interface IUserAppService
+    public interface IUserAppService : ICRUDAppService<UserViewModel>
     {
-        IList<ValidationError> Add(UserViewModel obj);
-        UserViewModel Get(long id);
-        IEnumerable<UserViewModel> Get();
-        IList<ValidationError> Update(UserViewModel obj);
-        void Remove(long id);
     }
 }

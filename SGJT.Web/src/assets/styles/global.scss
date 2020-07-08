@@ -1,6 +1,8 @@
 @import './variables.scss';
 @import './buttons/buttons.scss';
 @import './forms/forms.scss';
+@import './navbar/navbar.scss';
+@import './auth/auth.scss';
 
 html {
     min-height: 100vh;
@@ -15,11 +17,42 @@ body {
 * {
     box-sizing: border-box;
 }
+input {
+    font-family: $font-family;
+    font-size: $font-size;
+}
 input:focus::placeholder {
     color: transparent;
-  }
+}
+// button {
+//     font-size: $font-size;
+// }
+.nav-icon {
+    margin-right: 10px;
+}
+.main {
+    display: grid;
+    grid-template-columns: 1fr 7fr;
+}
+.navigation {
+    background-color: $black;
+    color: $font-color-secondary;
+    user-select: none;
+    position: relative;
+}
+.content {
+    padding: 20px;
+    background-color: $gray;
+}
+.navigation,
+.content {
+    min-height: 100vh;
+}
 .container {
     border: 1px solid $border-gray;
+}
+.container:nth-child(even) {
+    margin-top: 15px;
 }
 .container__header {
     background-color: $gray-secondary;
@@ -35,4 +68,28 @@ input:focus::placeholder {
 .header__title {
     padding-left: 10px;
     padding-right: 10px;
+}
+.list {
+    width: 100%;
+    border-collapse: collapse;
+}
+.list__row {
+    cursor: pointer;
+}
+.list__row:nth-child(even) {
+    background: $gray-secondary;
+}
+.list__header,
+.list__data {
+    text-align: left;
+    padding: .75rem;
+    border-bottom: 1px solid $border-gray;
+}
+.list__header {
+    border-top: 1px solid $border-gray;
+    border-bottom: 2px solid $border-gray;
+}
+.list__options {
+    margin-bottom: 15px;
+    text-align: right;
 }

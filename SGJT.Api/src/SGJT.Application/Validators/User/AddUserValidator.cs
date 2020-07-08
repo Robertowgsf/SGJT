@@ -8,7 +8,7 @@ namespace SGJT.Application.Validators.User
         public AddUserValidator()
         {
             ValidateName();
-            ValidateDailyHours();
+            //ValidateDailyHours();
         }
 
         private void ValidateName()
@@ -19,11 +19,11 @@ namespace SGJT.Application.Validators.User
                 .MustNotContainsNumber().WithMessage("Tem certeza que digitou seu nome corretamente?");
         }
 
-        private void ValidateDailyHours()
-        {
-            RuleFor(user => user.DailyHours)
-                .NotNull().WithMessage("Digite a quantidade de horas diárias.")
-                .GreaterThan(0).WithMessage("Quantidade de horas diárias inválida.");
-        }
+        //private void ValidateDailyHours()
+        //{
+        //    RuleFor(user => user.DailyHours)
+        //        .NotNull().WithMessage("Digite a quantidade de horas diárias.")
+        //        .GreaterThan(0).WithMessage("Quantidade de horas diárias inválida.");
+        //}
     }
 }

@@ -1,0 +1,52 @@
+<div class="container">
+    <div class="container__header">
+        <b>{{formDefinition.name}}</b>
+    </div>
+    <div class="container__body">
+        <form [formGroup]="formDefinition.formGroup" (ngSubmit)="save(formDefinition.formGroup.value)">
+            <div class="form-group" *ngFor="let field of formDefinition.fields">
+                <label class="form-label">
+                    {{field.nickname}}:
+                </label>
+                <input class="form-control" type="{{field.type}}" formControlName="{{field.name}}" placeholder="{{field.placeholder}}">
+                <div *ngFor="let error of formDefinition.formGroup.get(field.name).errors" class="invalid-feedback">
+                    <i class="fas fa-exclamation-circle"></i>
+                    {{error}}
+                </div>
+            </div>
+            <div class="form-buttons">
+                <button class="btn btn-success" type="submit" [disabled]="!formDefinition.formGroup.valid">
+                    <i class="far fa-dot-circle"></i>Salvar
+                </button>
+                <button *ngIf="isNew" class="btn btn-danger" type="reset">
+                    <i class="fa fa-ban"></i>Resetar
+                </button>
+                <button *ngIf="!isNew" class="btn btn-danger" type="button" (click)="remove()">
+                    <i class="fa fa-times"></i>Remover
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div *ngIf="listDefinitions.length > 0" class="container">
+    <div class="container-tabs">
+        <a *ngFor="let listDefinition of listDefinitions; let i = index" class="container-tabs__item {{listDefinition.activeClass}}" (click)="selectTabItem(i)">{{listDefinition.title}}</a>
+    </div>
+    <div class="container__body">
+        <table class="list">
+            <tr class="list__row">
+                <th class="list__header" *ngFor="let column of selectedListDefinition.columns">{{column.nickname}}</th>
+                <th class="list__header" *ngIf="selectedListDefinition.title">Ações</th>
+            </tr>
+            <tr class="list__row" *ngFor="let data of selectedListDefinition.dataSource; let i = index">
+                <td class="list__data" *ngFor="let column of selectedListDefinition.columns">
+                    {{data[column.name]}}
+                </td>
+                <td class="list__data">
+                    <button class="btn btn-danger" (click)="removeAssociation(data.id, i)"><i class="fa fa-times"></i>Remover</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

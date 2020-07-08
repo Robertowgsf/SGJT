@@ -1,18 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import { Routes, RouterModule } from '@angular/router';
 import { CoreModule } from './core/core.module';
 import { CanDeactivateGuard } from './shared/guards/can-deactivate-guard.service';
 import { HttpClientModule } from '@angular/common/http';
-
-// const routes: Routes = [
-//   { path: 'list', loadChildren: () => import('./features/list/list.module').then(m => m.ListModule) },
-//   { path: 'register', loadChildren: () => import('./features/register/register.module').then(m => m.RegisterModule) },
-// ];
+import { PagesModule } from './pages/pages.module';
+import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
-  { path: 'registrations', loadChildren: () => import('./features/registrations/registrations.module').then(m => m.RegistrationsModule) }
+  { path: '', redirectTo: 'pages', pathMatch: 'full' },
+  { path: 'pages', loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule) }
 ];
 
 @NgModule({
@@ -20,10 +17,11 @@ const routes: Routes = [
     AppComponent
   ],
   imports: [
-    RouterModule.forRoot(routes),
     BrowserModule,
+    HttpClientModule,
     CoreModule,
-    HttpClientModule
+    PagesModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [
     CanDeactivateGuard

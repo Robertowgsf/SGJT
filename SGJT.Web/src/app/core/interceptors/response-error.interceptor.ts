@@ -7,11 +7,14 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class ResponseErrorInterceptor implements HttpInterceptor {
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(request)
@@ -19,6 +22,9 @@ export class ResponseErrorInterceptor implements HttpInterceptor {
         tap(
           _event => { },
           error => {
+            if (error.status == 401) {
+              this.router.navigateByUrl("authentication/login");
+            }
             console.log(error);
           }
         )

@@ -1,0 +1,24 @@
+@import '../../../../assets/styles/variables.scss';
+@import '../../../../assets/styles/global.scss';  // ??
+
+.container-tabs {
+    background-color: $gray-secondary;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    text-align: center;
+}
+.container-tabs__item:last-child {
+    border-right: none;
+}
+.container-tabs__item:first-child {
+    border-right: 1px solid $border-gray;
+}
+.container-tabs__item {
+    padding: 15px;
+    cursor: pointer;
+    border-bottom: 1px solid $border-gray;
+}
+.container-tabs__item-active, .container-tabs__item-active:hover {
+    background-color: $white;
+    border-bottom: none !important;
+}

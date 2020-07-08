@@ -17,9 +17,6 @@
     cursor: auto;
     opacity: 90%;
 }
-.btn-text {
-    padding-left: 4px;
-}
 .btn-primary {
     color: #fff;
     background-color: $btn-primary;
@@ -67,4 +64,7 @@
 }
 .btn-danger:focus {
     box-shadow: 0 0 0 0.2rem $btn-danger-focus;
+}
+.btn > i {
+    margin-right: 4px;
 }

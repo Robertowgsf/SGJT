@@ -10,6 +10,7 @@ namespace SGJT.Application.AutoMapper
         public DomainToViewModelMappingProfile()
         {
             CreateMap<User, UserViewModel>()
+                //.ForMember(model => model.Name, opt => opt.MapFrom(entity => entity.IdentityUser.UserName))
                 .ForMember(model => model.Teams, opt => opt.MapFrom(entity => entity.UserTeams.Select(a => a.Team)));
 
             CreateMap<Team, TeamViewModel>()

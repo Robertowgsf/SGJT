@@ -5,10 +5,10 @@ namespace SGJT.Domain.Interfaces.Repositories
 {
     public interface IRepository<TEntity> where TEntity : Entity
     {
-        void Add(TEntity obj);
+        void Add(TEntity entity);
         TEntity Get(long id);
         IQueryable<TEntity> Get();
-        void Update(TEntity obj);
+        void Update(TEntity entity);
         void Remove(long id);
         int SaveChanges();
     }

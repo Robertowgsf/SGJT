@@ -1,3 +1,3 @@
 export abstract class Entity {
-    id: number;
+    id: number = 0;
 }

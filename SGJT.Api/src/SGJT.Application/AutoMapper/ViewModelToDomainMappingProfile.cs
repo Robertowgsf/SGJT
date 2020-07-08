@@ -8,6 +8,8 @@ namespace SGJT.Application.AutoMapper
     {
         public ViewModelToDomainMappingProfile()
         {
+            CreateMap<RegisterUserViewModel, User>();
+
             CreateMap<UserViewModel, User>()
                 .ForMember(entity => entity.UserTeams, opt => opt.MapFrom(model => model.Teams))
                 .AfterMap((model, entity) =>
@@ -33,6 +35,7 @@ namespace SGJT.Application.AutoMapper
 
             CreateMap<TeamViewModel, UserTeam>()
                 .ForMember(entity => entity.Team, opt => opt.MapFrom(model => model));
+
         }
     }
 }

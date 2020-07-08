@@ -1,0 +1,46 @@
+.auth-container {
+    width: 100vw;
+    height: 100vh;
+    // background: $black;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center
+}
+.auth-box {
+    width: 350px;
+    height: 500px;
+    background: $gray;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    -webkit-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 15px 0px rgba(160,160,160,0.75);
+    position: relative;
+}
+.auth-inputs {
+    padding: 15px;
+    padding-top: 0;
+}
+.auth-button {
+    padding: 0 15px;
+}
+.auth-form-control {
+    width: 100%;
+}
+.auth-btn {
+    width: 100%;
+}
+.auth-signup {
+    font-size: $font-size-small;
+    text-align: center;
+    margin-top: 15px;
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+}
+.auth-invalid-feedback {
+    margin-top: 0;
+    margin-bottom: 5px;
+}

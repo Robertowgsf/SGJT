@@ -1,0 +1,61 @@
+@import '../variables.scss';
+
+.navbar {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.navbar__item {
+    text-align: left;
+}
+.navbar__link {
+    padding: .5rem 1rem;
+    display: block;
+    color: $white;
+    text-decoration: none;
+    cursor: pointer;
+}
+.navbar__link:hover {
+    background-color: $black-tertiary;
+}
+.navbar__item__content {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+}
+.navbar__dropdown {
+    @extend .navbar;
+    max-height: 0;
+    overflow-y: hidden;
+    transition: max-height .3s ease-in-out;
+}
+.dropdown {
+    @extend .navbar__link;
+    // display: flex;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr 50fr 1fr;
+    // justify-content: space-between;
+}
+.dropdown__icon {
+    transition: transform .3s;
+}
+.navbar__item-dropdown {
+    @extend .navbar__item;
+}
+.navbar__link-dropdown {
+    @extend .navbar__link;
+    padding-left: 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr 9fr;
+    align-items: center;
+}
+.open>.navbar__dropdown {
+    max-height: 1500px;
+}
+.open>.dropdown>.dropdown__icon {
+    @extend .dropdown__icon;
+    transform: rotate(-90deg);
+}
+.selected {
+    background-color: $black-secondary;
+}

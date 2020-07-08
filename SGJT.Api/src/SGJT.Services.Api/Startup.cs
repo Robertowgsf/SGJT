@@ -20,14 +20,20 @@ namespace SGJT.Services.Api
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            // Setting DbContext.
-            services.AddDatabaseSetup(Configuration);
-
             // WebAPI Config.
             services.AddControllers();
 
             // .NET Native DI Abstraction.
             services.AddDependencyInjectionSetup();
+
+            // AppSettings Objects.
+            services.AddSettingObjects(Configuration);
+
+            // Setting DbContext.
+            services.AddDatabaseSetup(Configuration);
+
+            // Identity and JWT Settings.
+            services.AddIdentitySetup(Configuration);
 
             // Automapper Settings.
             services.AddAutoMapperSetup();
@@ -54,6 +60,9 @@ namespace SGJT.Services.Api
                 c.AllowAnyMethod();
                 c.AllowAnyOrigin();
             });
+
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

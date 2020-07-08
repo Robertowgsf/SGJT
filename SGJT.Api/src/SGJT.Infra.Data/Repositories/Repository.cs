@@ -18,9 +18,9 @@ namespace SGJT.Infra.Data.Repositories
             DbSet = Db.Set<TEntity>();
         }
 
-        public virtual void Add(TEntity obj)
+        public virtual void Add(TEntity entity)
         {
-            DbSet.Add(obj);
+            DbSet.Add(entity);
         }
 
         public virtual TEntity Get(long id)
@@ -33,9 +33,19 @@ namespace SGJT.Infra.Data.Repositories
             return DbSet;
         }
 
-        public void Update(TEntity obj)
+        public void Update(TEntity entity)
         {
-            DbSet.Update(obj);
+            // Só uma entidade com o mesmo Id pode ser rastreada.
+            var localEntry = DbSet.Local.FirstOrDefault(entry => entry.Id == entity.Id);
+
+            if (localEntry != null)
+            {
+                Db.Entry(localEntry).State = EntityState.Detached;
+            }
+
+            Db.Entry(entity).State = EntityState.Modified;
+
+            DbSet.Update(entity);
         }
 
         public virtual void Remove(long id)
