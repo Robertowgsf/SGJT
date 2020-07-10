@@ -9,8 +9,10 @@ namespace SGJT.Infra.Data.Contexts
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Team> Teams { get; set; }
-        public DbSet<UserTeam> ApplicationUserTeams { get; set; }
+        public DbSet<UserTeam> UserTeams { get; set; }
         public DbSet<Project> Projects { get; set; }
+        public DbSet<ProjectTeam> ProjectTeams { get; set; }
+        public DbSet<ProjectUser> ProjectUsers { get; set; }
         public DbSet<WorkingTimeRecord> WorkingTimeRecords { get; set; }
 
         public SGJTContext(DbContextOptions<SGJTContext> options) : base(options) 

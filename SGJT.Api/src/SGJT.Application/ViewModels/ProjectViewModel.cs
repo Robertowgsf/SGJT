@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections.Generic;
 
 namespace SGJT.Application.ViewModels
 {
@@ -10,7 +10,8 @@ namespace SGJT.Application.ViewModels
         public int EstimatedHours { get; set; }
         public int WorkedHours { get; set; }
         public string Status { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime Deadline { get; set; }
+        public string StartDate { get; set; }
+        public string Deadline { get; set; }
+        public ICollection<TeamViewModel> Teams { get; set; }
     }
 }

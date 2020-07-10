@@ -28,7 +28,4 @@ export abstract class ApiService {
         return this.http.delete(`${environment.apiUrl}${this.endpoint}/${id}`, { headers: this.headers });
     }
 
-    removerAssociacao(body) {
-        return this.http.put(`${environment.apiUrl}${this.endpoint}/removerAssociacao`, JSON.stringify(body), { headers: this.headers })
-    }
 }

@@ -25,29 +25,29 @@ namespace SGJT.Application.Validators.User
         private void ValidateEmail()
         {
             RuleFor(user => user.Email)
-                .NotEmpty().WithMessage("Digite seu email")
-                .EmailAddress().WithMessage("Email inválido");
+                .NotEmpty().WithMessage("Digite seu email.")
+                .EmailAddress().WithMessage("Email inválido.");
         }
 
         private void ValidateRole()
         {
             RuleFor(user => user.Role)
-                .NotEmpty().WithMessage("Cargo inválido");
+                .NotEmpty().WithMessage("Cargo inválido.");
         }
 
         private void ValidatePassword()
         {
             RuleFor(user => user.Password)
-                .NotEmpty().WithMessage("Digite sua senha")
-                .MinimumLength(8).WithMessage("Sua senha deve conter pelo menos 8 caracteres")
-                .Equal(user => user.ConfirmPassword).WithMessage("Senhas não conferem");
+                .NotEmpty().WithMessage("Digite sua senha.")
+                .MinimumLength(8).WithMessage("Sua senha deve conter pelo menos 8 caracteres.")
+                .Equal(user => user.ConfirmPassword).WithMessage("Senhas não conferem.");
         }
 
         private void ValidateConfirmPassword()
         {
             RuleFor(user => user.ConfirmPassword)
-                .NotEmpty().WithMessage("Confirme sua senha")
-                .Equal(user => user.Password).WithMessage("Senhas não conferem");
+                .NotEmpty().WithMessage("Confirme sua senha.")
+                .Equal(user => user.Password).WithMessage("Senhas não conferem.");
         }
     }
 }

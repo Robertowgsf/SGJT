@@ -8,5 +8,6 @@ namespace SGJT.Domain.Entities
         public string Type { get; set; }
         public string Description { get; set; }
         public User User { get; set; }
+        public Project Project { get; set; }
     }
 }

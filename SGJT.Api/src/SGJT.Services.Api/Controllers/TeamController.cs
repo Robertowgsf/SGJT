@@ -2,12 +2,13 @@
 using Microsoft.AspNetCore.Mvc;
 using SGJT.Application.Interfaces;
 using SGJT.Application.ViewModels;
+using SGJT.Domain.Entities;
 
 namespace SGJT.Services.Api.Controllers
 {
     [Authorize]
     [Route("api/[controller]")]
-    public class TeamController : CRUDController<TeamViewModel>
+    public class TeamController : CRUDController<TeamViewModel, Team>
     {
         private readonly ITeamAppService _teamAppService;
 
@@ -17,10 +18,18 @@ namespace SGJT.Services.Api.Controllers
             _teamAppService = teamAppService;
         }
 
-        [HttpPut("removerAssociacao")]
-        public IActionResult RemoverAssociacao([FromBody]TeamViewModel teamViewModel)
+        [HttpPost("addAssociation")]
+        public IActionResult AddAssociation([FromBody]AddAssociationViewModel addAssociationViewModel)
         {
-            _teamAppService.RemoverAssociacao(teamViewModel);
+            var userViewModel = _teamAppService.AddAssociation(addAssociationViewModel);
+
+            return Response(userViewModel);
+        }
+
+        [HttpPost("removeAssociation")]
+        public IActionResult RemoveAssociation([FromBody]RemoveAssociationViewModel removeAssociationViewModel)
+        {
+            _teamAppService.RemoveAssociation(removeAssociationViewModel);
 
             return Response();
         }

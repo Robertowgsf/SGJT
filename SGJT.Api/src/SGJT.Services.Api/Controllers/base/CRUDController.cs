@@ -1,31 +1,35 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SGJT.Application.Interfaces;
+using SGJT.Domain.Entities;
 
 namespace SGJT.Services.Api.Controllers
 {
-    public class CRUDController<TViewModel> : ApiController
+    public class CRUDController<TViewModel, TEntity> : ApiController
         where TViewModel : class
+        where TEntity : Entity
     {
-        private readonly ICRUDAppService<TViewModel> _CRUDAppService;
+        private readonly ICRUDAppService<TViewModel, TEntity> _CRUDAppService;
 
-        public CRUDController(ICRUDAppService<TViewModel> CRUDAppService)
+        public CRUDController(ICRUDAppService<TViewModel, TEntity> CRUDAppService)
         {
             _CRUDAppService = CRUDAppService;
         }
 
-        [Authorize(Roles = "Gerente")]
+        [Authorize(Roles = "Gestor")]
         [HttpPost]
         public IActionResult Add([FromBody]TViewModel viewModel)
         {
-            var validationErrors = _CRUDAppService.Add(viewModel);
+            var validationErrors = _CRUDAppService.ValidateAddViewModel(viewModel);
 
             if (validationErrors.Count > 0)
             {
                 return Response(validationErrors, 400);
             }
 
-            return Response();
+            var entity = _CRUDAppService.Add(viewModel);
+
+            return Response(entity);
         }
 
         [HttpGet]
@@ -49,7 +53,7 @@ namespace SGJT.Services.Api.Controllers
             return Response(viewModels);
         }
 
-        [Authorize(Roles = "Gerente")]
+        [Authorize(Roles = "Gestor")]
         [HttpPut]
         public IActionResult Update([FromBody]TViewModel viewModel)
         {
@@ -63,7 +67,7 @@ namespace SGJT.Services.Api.Controllers
             return Response();
         }
 
-        [Authorize(Roles = "Gerente")]
+        [Authorize(Roles = "Gestor")]
         [HttpDelete("{id}")]
         public IActionResult Remove(long id)
         {

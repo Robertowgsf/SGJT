@@ -5,8 +5,10 @@ import { CoreModule } from '../core/core.module';
 import { MainComponent } from '../core/layout/main/main.component';
 import { AuthGuard } from '../core/guards/auth.guard';
 import { RecordTimeComponent } from './record-time/record-time.component';
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
+  { path: 'pages', redirectTo: 'pages/timeRecord' },
   {
     path: 'pages',
     component: MainComponent,
@@ -26,7 +28,8 @@ const routes: Routes = [
   imports: [
     CommonModule,
     CoreModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    FormsModule
   ]
 })
 export class PagesModule { }

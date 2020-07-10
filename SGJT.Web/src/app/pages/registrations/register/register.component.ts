@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ListDefinition } from 'src/app/shared/models/list/list-definition.model';
 import { FormDefinition } from 'src/app/shared/models/form/form-definition.model';
 import { Entity } from 'src/app/shared/models/base/entity.model';
@@ -18,8 +18,12 @@ export class RegisterComponent implements OnInit {
   selectedListDefinition: ListDefinition;
   selectedListDefinitionIndex: number;
 
+  isAddingNewAssociation: boolean = false;
+  newEntry;
+
   constructor(
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -46,7 +50,8 @@ export class RegisterComponent implements OnInit {
     }
     else {
       this.formDefinition.service.post(this.formDefinition.model).subscribe(success => {
-        console.log(success);
+        this.formDefinition.model = success;
+        this.router.navigate([`../${success.id}`], { relativeTo: this.route })
       }, error => {
         this.setFormErrors(error.error);
       });
@@ -56,28 +61,47 @@ export class RegisterComponent implements OnInit {
   remove() {
     let id = this.formDefinition.model.id;
     this.formDefinition.service.delete(id).subscribe(success => {
-      console.log(success);
+      this.router.navigateByUrl(this.router.url.replace(`/${id}`, "").replace("register", "list"));
     });
   }
 
   removeAssociation(id, index) {
     let propertyName = this.listDefinitions[this.selectedListDefinitionIndex].propertyName;
     // E quando tiver paginação??
-    this.formDefinition.model[propertyName].splice(index, 1);
     // Criar método específico para remover associações?
-    this.formDefinition.service.removerAssociacao(this.formDefinition.model).subscribe(success => {
+    this.formDefinition.service.removeAssociation(this.formDefinition.model.id, id).subscribe(success => {
+      this.formDefinition.model[propertyName].splice(index, 1);
       // this.listDefinitions[index].dataSource.splice(index, 1);
       // this.selectedListDefinition.dataSource = this.listDefinitions[index].dataSource;
     });
   }
 
   selectTabItem(index) {
-    if (this.listDefinitions[index].activeClass != "container-tabs__item-active") {  
+    if (this.listDefinitions[index].activeClass != "container-tabs__item-active") {
       this.listDefinitions.forEach(list => list.activeClass = "");
       this.listDefinitions[index].activeClass = "container-tabs__item-active";
       this.selectedListDefinition = this.listDefinitions[index];
       this.selectedListDefinitionIndex = index;
     }
+  }
+
+  addNewAssociation() {
+    let newEntry = this.newEntry ? parseInt(this.newEntry) : this.newEntry;
+    this.selectedListDefinition.addNewAssociation(this.formDefinition.model.id, newEntry).subscribe(success => {
+      if (!this.selectedListDefinition.dataSource) {
+        this.selectedListDefinition.dataSource = [];
+      }
+      this.selectedListDefinition.dataSource.push(success);
+    }, error => {
+      console.log(error);
+    });
+
+    this.cancelNewAssociation();
+  }
+
+  cancelNewAssociation() {
+    this.isAddingNewAssociation = false;
+    this.newEntry = null;
   }
 
   private castObjectIntoModel(object: Object, model: Entity) {
@@ -87,7 +111,7 @@ export class RegisterComponent implements OnInit {
 
       let castedProp = modelProp.constructor(objProp);
 
-       if (castedProp == "null") {
+      if (castedProp == "null") {
         castedProp = "";
       }
 

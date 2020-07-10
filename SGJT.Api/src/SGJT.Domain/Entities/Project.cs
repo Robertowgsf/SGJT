@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace SGJT.Domain.Entities
 {
@@ -11,5 +12,8 @@ namespace SGJT.Domain.Entities
         public string Status { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime Deadline { get; set; }
+        public ICollection<ProjectUser> ProjectUsers { get; set; }
+        public ICollection<ProjectTeam> ProjectTeams { get; set; }
+        public ICollection<WorkingTimeRecord> WorkingTimeRecords { get; set; }
     }
 }

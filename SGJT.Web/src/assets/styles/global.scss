@@ -24,9 +24,6 @@ input {
 input:focus::placeholder {
     color: transparent;
 }
-// button {
-//     font-size: $font-size;
-// }
 .nav-icon {
     margin-right: 10px;
 }
@@ -50,6 +47,9 @@ input:focus::placeholder {
 }
 .container {
     border: 1px solid $border-gray;
+    -webkit-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 15px 0px rgba(160,160,160,0.75);
 }
 .container:nth-child(even) {
     margin-top: 15px;
@@ -92,4 +92,21 @@ input:focus::placeholder {
 .list__options {
     margin-bottom: 15px;
     text-align: right;
+}
+.list__new-entry {
+    cursor: pointer;
+    background: $gray-secondary;
+    padding: 0.75rem;
+    text-align: center;
+}
+.list__new-entry:hover {
+    background: $white;
+}
+.list__search {
+    padding: 0.75rem;
+}
+.form-control-select {
+    margin-bottom: 5px;
+    padding: 6px 8px;
+    font-size: 14px;
 }

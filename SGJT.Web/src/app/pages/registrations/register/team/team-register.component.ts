@@ -7,6 +7,7 @@ import { FormDefinition } from 'src/app/shared/models/form/form-definition.model
 import { TeamService } from 'src/app/shared/services/team.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ListColumnDefinition } from 'src/app/shared/models/list/list-column-definition.model';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-team-register',
@@ -22,7 +23,8 @@ export class TeamRegisterComponent implements OnInit {
   constructor(
     private teamService: TeamService,
     private route: ActivatedRoute,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private userService: UserService
   ) { }
 
   ngOnInit(): void {
@@ -38,10 +40,15 @@ export class TeamRegisterComponent implements OnInit {
     this.userListDefinition.title = "Usuários";
     this.userListDefinition.registerURL = "registrations/register/user";
     this.userListDefinition.columns = [
-      new ListColumnDefinition("name", "Nome"),
-      new ListColumnDefinition("dailyHours", "Horas Diárias")
+      new ListColumnDefinition("name", "Nome")
     ];
     this.userListDefinition.propertyName = "users";
+    this.userListDefinition.service = this.teamService;
+    this.userListDefinition.addNewAssociation = function userListAddNewAssociation(id: number, name: string) {
+      return this.service.addAssociation(id, name);
+    };
+    
+    this.getUserNewEntryDatasource();
     
     this.listDefinitions.push(this.userListDefinition);
     this.createFormGroup();
@@ -72,5 +79,11 @@ export class TeamRegisterComponent implements OnInit {
         name: [],
       });
     }
+  }
+
+  getUserNewEntryDatasource() {
+    this.userService.get().subscribe(success => {
+      this.userListDefinition.newEntryDatasource = success;
+    });
   }
 }

@@ -23,6 +23,7 @@ export class UserListComponent implements OnInit {
       new ListColumnDefinition("name", "Nome"),
     ];
 
+    // Obtém os usuários da API.
     this.userService.get().subscribe(success => {
       this.listDefinition.dataSource = success;
     });

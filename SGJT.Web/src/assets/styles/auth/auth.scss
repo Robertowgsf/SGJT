@@ -1,6 +1,6 @@
 .auth-container {
-    width: 100vw;
-    height: 100vh;
+    // width: 100vw;
+    // height: 100vh;
     // background: $black;
     display: flex;
     flex-direction: row;
@@ -10,7 +10,7 @@
 .auth-box {
     width: 350px;
     height: 500px;
-    background: $gray;
+    background: $white;
     // display: flex;
     // justify-content: center;
     // align-items: center;
@@ -18,6 +18,7 @@
     -moz-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
     box-shadow: 0px 0px 15px 0px rgba(160,160,160,0.75);
     position: relative;
+    border-radius: 15px;
 }
 .auth-inputs {
     padding: 15px;
@@ -43,4 +44,13 @@
 .auth-invalid-feedback {
     margin-top: 0;
     margin-bottom: 5px;
+    text-align: left;
+}
+.auth {
+    height: 100vh;
+    background-color: black;
+    text-align: center;
+}
+.logo {
+    height: 300px;
 }

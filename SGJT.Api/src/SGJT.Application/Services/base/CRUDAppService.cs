@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace SGJT.Application.Services
 {
-    public class CRUDAppService<TViewModel, TEntity, TAddValidator> : ICRUDAppService<TViewModel>
+    public class CRUDAppService<TViewModel, TEntity, TAddValidator> : ICRUDAppService<TViewModel, TEntity>
         where TViewModel : class
         where TEntity : Entity
         where TAddValidator : IValidator
@@ -27,21 +27,26 @@ namespace SGJT.Application.Services
             _addValidator = addValidator;
         }
 
-        public IList<ValidationError> Add(TViewModel viewModel)
+        // Validação para adicionar view model.
+        public IList<ValidationError> ValidateAddViewModel(TViewModel viewModel)
         {
             ValidationResult validation = _addValidator.Validate(viewModel);
-
-            if (validation.IsValid)
-            {
-                var entity = _mapper.Map<TEntity>(viewModel);
-
-                _repository.Add(entity);
-                _repository.SaveChanges();
-            }
 
             return validation.GetValidationResultErrors();
         }
 
+        // Adiciona uma nova entidade.
+        public TEntity Add(TViewModel viewModel)
+        {
+            var entity = _mapper.Map<TEntity>(viewModel);
+
+            _repository.Add(entity);
+            _repository.SaveChanges();
+
+            return entity;
+        }
+
+        // Obtém uma entidade pelo Id.
         public TViewModel Get(long id)
         {
             var entity = _repository.Get().Where(entity => entity.Id == id);
@@ -50,6 +55,7 @@ namespace SGJT.Application.Services
             return viewModel;
         }
 
+        // Obtém todas as entidades do tipo atual.
         public IEnumerable<TViewModel> Get()
         {
             var entities = _repository.Get();
@@ -58,6 +64,7 @@ namespace SGJT.Application.Services
             return viewModels;
         }
 
+        // Atualiza uma entidade.
         public IList<ValidationError> Update(TViewModel viewModel)
         {
             ValidationResult validation = _addValidator.Validate(viewModel);
@@ -74,6 +81,7 @@ namespace SGJT.Application.Services
             return validation.GetValidationResultErrors();
         }
 
+        // Remove uma entidade.
         public void Remove(long id)
         {
             _repository.Remove(id);

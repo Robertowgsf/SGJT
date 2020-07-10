@@ -15,11 +15,6 @@ namespace SGJT.Services.Api.Configurations
         {
             var jwtSettings = configuration.GetSection("JWTSettings").Get<JWTSettings>();
 
-            services.AddDefaultIdentity<IdentityUser>()
-                .AddRoles<IdentityRole>()
-                .AddEntityFrameworkStores<SGJTContext>()
-                .AddDefaultTokenProviders();
-
             services.AddAuthentication(x =>
             {
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

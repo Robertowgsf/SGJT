@@ -1,5 +1,36 @@
-<div class="">
-    <h1>{{ time | date: 'HH:mm:ss' }}</h1>
-    <input type="text" placeholder="Digite aqui uma breve descrição do que você fez">
-    <button class="btn btn-primary">Registrar Jornada</button>
+<div class="container">
+    <div class="container__header time">
+        <span class="header-time">{{ time | date: 'HH:mm:ss' }}</span>
+    </div>
+    <div class="container__body">
+        <input class="form-control time-description" type="text" placeholder="Digite aqui uma breve descrição do que você fez" [(ngModel)]="description">
+        <select class="form-control form-control-select auth-form-control" style="margin-bottom: 15px;" [(ngModel)]="selectedProject">
+            <option *ngFor="let project of projects" [value]="project.id">{{project.name}}</option>
+        </select>
+        <button class="btn btn-primary" (click)="registerWorkingTimeRecord()">Registrar Jornada</button>
+    </div>
+</div>
+
+<div class="container">
+    <div class="container__header">
+        <span class="fas fa-align-justify"></span>
+        <span class="header__title">{{listDefinition.title}}</span>
+    </div>
+    <div class="container__body">
+        <div *ngIf="listDefinition.newEntryName" class="list__options">
+            <button class="btn btn-success" >
+                <i class="fa fa-plus"></i><span class="btn-text">Adicionar {{listDefinition.newEntryName}}</span>
+            </button>
+        </div>
+        <table class="list">
+            <tr class="list__row">
+                <th class="list__header" *ngFor="let column of listDefinition.columns">{{column.nickname}}</th>
+            </tr>
+            <tr class="list__row" *ngFor="let data of listDefinition.dataSource" >
+                <td class="list__data" *ngFor="let column of listDefinition.columns">
+                    {{data[column.name]}}
+                </td>
+            </tr>
+        </table>
+    </div>
 </div>

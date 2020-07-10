@@ -8,7 +8,8 @@
                 <label class="form-label">
                     {{field.nickname}}:
                 </label>
-                <input class="form-control" type="{{field.type}}" formControlName="{{field.name}}" placeholder="{{field.placeholder}}">
+                <input class="form-control" type="{{field.type}}" formControlName="{{field.name}}"
+                    placeholder="{{field.placeholder}}">
                 <div *ngFor="let error of formDefinition.formGroup.get(field.name).errors" class="invalid-feedback">
                     <i class="fas fa-exclamation-circle"></i>
                     {{error}}
@@ -31,7 +32,9 @@
 
 <div *ngIf="listDefinitions.length > 0" class="container">
     <div class="container-tabs">
-        <a *ngFor="let listDefinition of listDefinitions; let i = index" class="container-tabs__item {{listDefinition.activeClass}}" (click)="selectTabItem(i)">{{listDefinition.title}}</a>
+        <a *ngFor="let listDefinition of listDefinitions; let i = index"
+            class="container-tabs__item {{listDefinition.activeClass}}"
+            (click)="selectTabItem(i)">{{listDefinition.title}}</a>
     </div>
     <div class="container__body">
         <table class="list">
@@ -44,9 +47,24 @@
                     {{data[column.name]}}
                 </td>
                 <td class="list__data">
-                    <button class="btn btn-danger" (click)="removeAssociation(data.id, i)"><i class="fa fa-times"></i>Remover</button>
+                    <button class="btn btn-danger" (click)="removeAssociation(data.id, i)"><i
+                            class="fa fa-times"></i>Remover</button>
                 </td>
             </tr>
         </table>
+        <div class="list__new-entry" *ngIf="!isAddingNewAssociation && formDefinition.model.id"
+            (click)="isAddingNewAssociation = true">
+            <i class="fas fa-plus"></i>
+        </div>
+        <div class="list__search" *ngIf="isAddingNewAssociation">
+            <div>
+                <!-- <input class="form-control" type="text" placeholder="Nome" [(ngModel)]="newEntryName" style="margin-right: 10px;"> -->
+                <select class="form-control form-control-select" style="margin-right: 10px;" [(ngModel)]="newEntry">
+                    <option *ngFor="let entity of selectedListDefinition.newEntryDatasource" [value]="entity.id">{{entity.name}}</option>
+                </select>
+                <button class="btn btn-success" (click)="addNewAssociation()" style="margin-right: 10px;">Adicionar</button>
+                <button class="btn btn-danger" (click)="cancelNewAssociation()" style="margin-right: 10px;">Cancelar</button>
+            </div>
+        </div>
     </div>
 </div>

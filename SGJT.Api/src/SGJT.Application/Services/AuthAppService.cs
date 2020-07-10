@@ -21,17 +21,13 @@ namespace SGJT.Application.Services
 {
     public class AuthAppService : IAuthAppService
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
         private readonly RegisterUserValidator _registerUserValidator;
         private readonly IRepository<User> _userRepository;
         private readonly JWTSettings _jwtSettings;
         private readonly IMapper _mapper;
 
-        public AuthAppService(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, RegisterUserValidator registerUserValidator, IRepository<User> userRepository, IOptions<JWTSettings> jwtSettings, IMapper mapper)
+        public AuthAppService(RegisterUserValidator registerUserValidator, IRepository<User> userRepository, IOptions<JWTSettings> jwtSettings, IMapper mapper)
         {
-            _userManager = userManager;
-            _signInManager = signInManager;
             _registerUserValidator = registerUserValidator;
             _userRepository = userRepository;
             _jwtSettings = jwtSettings.Value;
@@ -48,27 +44,12 @@ namespace SGJT.Application.Services
                 return validationErrors;
             }
 
-            //var user = new IdentityUser
-            //{
-            //    UserName = registerUserViewModel.Name,
-            //    Email = registerUserViewModel.Email,
-            //    EmailConfirmed = true,
+            if (_userRepository.Get().FirstOrDefault(user => user.Name == registerUserViewModel.Name) != null)
+            {
+                validationErrors.Add(new ValidationError { PropertyName = "name", Errors = new List<string> { "Já existe um usuário cadastrado com esse nome." } });
 
-            //};
-
-            //var creationResult = await _userManager.CreateAsync(user, registerUserViewModel.Password);
-
-            //if (creationResult.Errors.Count() > 0)
-            //{
-            //    return new List<ValidationError>() { new ValidationError { PropertyName = "Erro" } };
-            //}
-
-            //await _userManager.AddClaimAsync(user, new Claim(registerUserViewModel.Type, registerUserViewModel.Type));
-
-            //var applicationUser = new ApplicationUser
-            //{
-            //    IdentityUser = user
-            //};
+                return validationErrors;
+            }
 
             var user = _mapper.Map<User>(registerUserViewModel);
 
@@ -82,13 +63,6 @@ namespace SGJT.Application.Services
         {
             var user = _userRepository.Get().FirstOrDefault(user => user.Name == loginUserViewModel.Name && user.Password == loginUserViewModel.Password);
 
-            //var result = await _signInManager.PasswordSignInAsync(loginUserViewModel.Name, loginUserViewModel.Password, false, true);
-
-            //if (!result.Succeeded)
-            //{
-            //    return null;
-            //}
-
             if (user == null)
             {
                 return null;
@@ -101,9 +75,6 @@ namespace SGJT.Application.Services
 
         private string CreateJWT(User user)
         {
-            //var user = await _userManager.FindByNameAsync(userName);
-            //var identityClaims = new ClaimsIdentity();
-            //identityClaims.AddClaims(await _userManager.GetClaimsAsync(user));
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_jwtSettings.Secret);
 

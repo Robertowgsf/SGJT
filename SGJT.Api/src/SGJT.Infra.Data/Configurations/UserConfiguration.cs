@@ -11,6 +11,15 @@ namespace SGJT.Infra.Data.Configurations
             builder.Property(a => a.Name)
                 .HasColumnType("varchar(100)")
                 .IsRequired();
+            builder.Property(a => a.Email)
+                .HasColumnType("varchar(100)")
+                .IsRequired();
+            builder.Property(a => a.Password)
+                .HasColumnType("varchar(100)")
+                .IsRequired();
+            builder.Property(a => a.Role)
+                .HasColumnType("varchar(100)")
+                .IsRequired();
         }
     }
 }

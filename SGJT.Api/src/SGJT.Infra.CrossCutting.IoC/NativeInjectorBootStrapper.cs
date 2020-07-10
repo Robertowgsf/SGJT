@@ -20,16 +20,21 @@ namespace SGJT.Infra.CrossCutting.IoC
             services.AddScoped<IUserAppService, UserAppService>();
             services.AddScoped<ITeamAppService, TeamAppService>();
             services.AddScoped<IProjectAppService, ProjectAppService>();
+            services.AddScoped<IWorkingTimeRecordAppService, WorkingTimeRecordAppService>();
             services.AddSingleton<AddUserValidator>();
             services.AddSingleton<AddTeamValidator>();
             services.AddSingleton<AddProjectValidator>();
             services.AddSingleton<RegisterUserValidator>();
+            //services.AddSingleton<AddWorkingTimeRecordViewModel>();
 
             // Infra - Data.
             services.AddScoped<SGJTContext>();
             services.AddScoped<IRepository<User>, Repository<User>>();
             services.AddScoped<IRepository<Team>, Repository<Team>>();
             services.AddScoped<IRepository<Project>, Repository<Project>>();
+            services.AddScoped<IRepository<WorkingTimeRecord>, Repository<WorkingTimeRecord>>();
+            services.AddScoped<IRepository<UserTeam>, Repository<UserTeam>>();
+            services.AddScoped<IRepository<ProjectTeam>, Repository<ProjectTeam>>();
         }
     }
 }

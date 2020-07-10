@@ -24,6 +24,9 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     FormsModule
+  ],
+  exports: [
+    ListComponent
   ]
 })
 export class ListModule { }

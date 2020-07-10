@@ -1,25 +1,31 @@
-<div class="auth-container">
-    <div class="auth-box">
-        <h1 style="text-align: center;">Login</h1>
-        <form [formGroup]="form" (ngSubmit)="submit()">
-            <div class="auth-inputs">
-                <input class="form-control auth-form-control" type="text" formControlName="name" placeholder="Usuário" style="margin-bottom: 5px;">
-                <div *ngFor="let error of form.get('name').errors" class="invalid-feedback auth-invalid-feedback">
-                    <i class="fas fa-exclamation-circle"></i>
-                    {{error}}
+<div class="auth">
+    <img class="logo" src="../../../../assets/images/logo.jpg">
+    <div class="auth-container">
+        <div class="auth-box">
+            <h1 style="text-align: center;">Login</h1>
+            <form [formGroup]="form" (ngSubmit)="submit()">
+                <div class="auth-inputs">
+                    <input class="form-control auth-form-control" type="text" formControlName="name"
+                        placeholder="Usuário" style="margin-bottom: 5px;">
+                    <div *ngFor="let error of form.get('name').errors" class="invalid-feedback auth-invalid-feedback">
+                        <i class="fas fa-exclamation-circle"></i>
+                        {{error}}
+                    </div>
+                    <input class="form-control auth-form-control" type="password" formControlName="password"
+                        placeholder="Senha">
+                    <div *ngFor="let error of form.get('password').errors"
+                        class="invalid-feedback auth-invalid-feedback">
+                        <i class="fas fa-exclamation-circle"></i>
+                        {{error}}
+                    </div>
                 </div>
-                <input class="form-control auth-form-control" type="password" formControlName="password" placeholder="Senha">
-                <div *ngFor="let error of form.get('password').errors" class="invalid-feedback auth-invalid-feedback">
-                    <i class="fas fa-exclamation-circle"></i>
-                    {{error}}
+                <div class="auth-button">
+                    <button class="btn btn-primary auth-btn" type="submit">Entrar</button>
                 </div>
-            </div>
-            <div class="auth-button">
-                <button class="btn btn-primary auth-btn" type="submit">Entrar</button>
-            </div>
-            <div class="auth-signup">
-                Não possui uma conta? <a routerLink="/authentication/register">Cadastre-se aqui</a>
-            </div>
-        </form>
+                <div class="auth-signup">
+                    Não possui uma conta? <a routerLink="/authentication/register">Cadastre-se aqui</a>
+                </div>
+            </form>
+        </div>
     </div>
 </div>

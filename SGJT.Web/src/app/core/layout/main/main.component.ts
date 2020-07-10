@@ -12,7 +12,7 @@ export class MainComponent implements OnInit {
   readonly menusGestor = [
     {
       name: "Apontar Horas",
-      route: "",
+      route: "timeRecord",
       icon: "fas fa-stopwatch",
       submenus: []
     },

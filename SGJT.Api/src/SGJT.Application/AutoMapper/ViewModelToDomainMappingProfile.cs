@@ -36,6 +36,7 @@ namespace SGJT.Application.AutoMapper
             CreateMap<TeamViewModel, UserTeam>()
                 .ForMember(entity => entity.Team, opt => opt.MapFrom(model => model));
 
+            CreateMap<ProjectViewModel, Project>();
         }
     }
 }

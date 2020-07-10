@@ -1,13 +1,12 @@
 import { FormFieldDefinition } from './form-field-definition.model';
 import { FormGroup } from '@angular/forms';
-import { ApiService } from '../../services/api.service';
 
 export class FormDefinition {
     name: string;
     model;
     fields: Array<FormFieldDefinition>;
     formGroup: FormGroup;
-    service: ApiService;
+    service;
 
     // constructor(name: string, model: Entity, fields: Array<FormFieldDefinition>, formGroup: FormGroup, service: ApiService) {
     //     this.name = name;

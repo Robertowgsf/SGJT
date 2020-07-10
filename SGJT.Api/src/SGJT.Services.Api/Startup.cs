@@ -21,7 +21,7 @@ namespace SGJT.Services.Api
         public void ConfigureServices(IServiceCollection services)
         {
             // WebAPI Config.
-            services.AddControllers();
+            services.AddControllerSetup();
 
             // .NET Native DI Abstraction.
             services.AddDependencyInjectionSetup();

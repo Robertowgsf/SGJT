@@ -1,40 +1,48 @@
-<div class="auth-container">
-    <div class="auth-box">
-        <h1 style="text-align: center;">Criar Conta</h1>
-        <form [formGroup]="form" (ngSubmit)="submit()">
-            <div class="auth-inputs">
-                <input class="form-control auth-form-control" type="text" formControlName="name" placeholder="Usuário" style="margin-bottom: 5px;">
-                <div *ngFor="let error of form.get('name').errors" class="invalid-feedback auth-invalid-feedback">
-                    <i class="fas fa-exclamation-circle"></i>
-                    {{error}}
+<div class="auth">
+    <img class="logo" src="../../../../assets/images/logo.jpg">
+    <div class="auth-container">
+        <div class="auth-box">
+            <h1 style="text-align: center;">Criar Conta</h1>
+            <form [formGroup]="form" (ngSubmit)="submit()">
+                <div class="auth-inputs">
+                    <input class="form-control auth-form-control" type="text" formControlName="name"
+                        placeholder="Usuário" style="margin-bottom: 5px;">
+                    <div *ngFor="let error of form.get('name').errors" class="invalid-feedback auth-invalid-feedback">
+                        <i class="fas fa-exclamation-circle"></i>
+                        {{error}}
+                    </div>
+                    <input class="form-control auth-form-control" type="text" formControlName="email"
+                        placeholder="Email" style="margin-bottom: 5px;">
+                    <div *ngFor="let error of form.get('email').errors" class="invalid-feedback auth-invalid-feedback">
+                        <i class="fas fa-exclamation-circle"></i>
+                        {{error}}
+                    </div>
+                    <select class="form-control form-control-select auth-form-control" formControlName="role">
+                        <option>Gestor</option>
+                        <option>Usuário</option>
+                    </select>
+                    <input class="form-control auth-form-control" type="password" formControlName="password"
+                        placeholder="Senha" style="margin-bottom: 5px;">
+                    <div *ngFor="let error of form.get('password').errors"
+                        class="invalid-feedback auth-invalid-feedback">
+                        <i class="fas fa-exclamation-circle"></i>
+                        {{error}}
+                    </div>
+                    <input class="form-control auth-form-control" type="password" formControlName="confirmPassword"
+                        placeholder="Confirmar Senha">
+                    <div *ngFor="let error of form.get('confirmPassword').errors"
+                        class="invalid-feedback auth-invalid-feedback">
+                        <i class="fas fa-exclamation-circle"></i>
+                        {{error}}
+                    </div>
                 </div>
-                <input class="form-control auth-form-control" type="text" formControlName="email" placeholder="Email" style="margin-bottom: 5px;">
-                <div *ngFor="let error of form.get('email').errors" class="invalid-feedback auth-invalid-feedback">
-                    <i class="fas fa-exclamation-circle"></i>
-                    {{error}}
+                <div class="auth-button">
+                    <button class="btn btn-primary auth-btn" type="submit">Cadastrar</button>
                 </div>
-                <input class="form-control auth-form-control" type="select" formControlName="role" placeholder="Cargo" style="margin-bottom: 5px;">
-                <div *ngFor="let error of form.get('role').errors" class="invalid-feedback auth-invalid-feedback">
-                    <i class="fas fa-exclamation-circle"></i>
-                    {{error}}
+                <div class="auth-signup">
+                    Já possui uma conta? <a routerLink="/authentication/login">Entre aqui</a>
                 </div>
-                <input class="form-control auth-form-control" type="password" formControlName="password" placeholder="Senha" style="margin-bottom: 5px;">
-                <div *ngFor="let error of form.get('password').errors" class="invalid-feedback auth-invalid-feedback">
-                    <i class="fas fa-exclamation-circle"></i>
-                    {{error}}
-                </div>
-                <input class="form-control auth-form-control" type="password" formControlName="confirmPassword" placeholder="Confirmar Senha">
-                <div *ngFor="let error of form.get('confirmPassword').errors" class="invalid-feedback auth-invalid-feedback">
-                    <i class="fas fa-exclamation-circle"></i>
-                    {{error}}
-                </div>
-            </div>
-            <div class="auth-button">
-                <button class="btn btn-primary auth-btn" type="submit">Cadastrar</button>
-            </div>
-            <div class="auth-signup">
-                Já possui uma conta? <a routerLink="/authentication/login">Entre aqui</a>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 </div>
