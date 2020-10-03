@@ -1,0 +1,12 @@
+{
+  "name": "SGJT.Mobile",
+  "displayName": "SGJT.Mobile",
+  "expo": {
+    "name": "SGJT.Mobile",
+    "slug": "SGJT.Mobile",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
