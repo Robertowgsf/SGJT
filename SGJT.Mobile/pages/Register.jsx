@@ -14,7 +14,7 @@ const Register = ({ navigation }) => {
 
     async function registerUser() {
         let response = await fetch(
-            'https://localhost:44331/api/Auth/register', {
+            'https://192.168.1.67:44331/api/Auth/register', {
             method: 'POST',
             headers: {
                 "Accept": "application/json",
@@ -64,7 +64,7 @@ const Register = ({ navigation }) => {
                 title="Cadastrar"
                 onPress={() => registerUser()}
             />
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', marginTop: 24 }}>
+            <View style={{ alignItems: 'center', justifyContent: 'center', marginTop: 24 }}>
                 <TouchableOpacity onPress={() => navigation.navigate('Login')} >
                     <Text style={{ textDecorationLine: "underline" }}>Já tenho uma conta</Text>
                 </TouchableOpacity>

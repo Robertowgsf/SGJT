@@ -33,9 +33,8 @@ const styles = StyleSheet.create({
     },
     container: {
         marginHorizontal: 16,
-        display: "flex",
         height: "100%",
-        float: "bottom",
+        // float: "bottom",
         justifyContent: "flex-end"
     },
     separator: {

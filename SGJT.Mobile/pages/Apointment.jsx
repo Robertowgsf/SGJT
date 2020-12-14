@@ -12,7 +12,7 @@ const Apointment = () => {
     async function getApointments() {
         try {
             let response = await fetch(
-                'https://localhost:44331/api/WorkingTimeRecord', {
+                'https://192.168.1.67:44331/api/WorkingTimeRecord', {
                 headers: {
                     "Authorization": `Bearer ${global.jwt}`
                 }

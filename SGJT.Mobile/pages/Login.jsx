@@ -12,7 +12,7 @@ const Login = ({ navigation }) => {
 
     async function login() {
         let response = await fetch(
-            'https://localhost:44331/api/Auth/login', {
+            'https://192.168.1.67:44331/api/Auth/login', {
             method: 'POST',
             headers: {
                 "Accept": "application/json",
@@ -28,6 +28,11 @@ const Login = ({ navigation }) => {
             global.jwt = jsonResponse.token;
             navigation.navigate('Home')
         }
+    }
+
+    function handleNavigation() {
+        console.log("handle navigation");
+        navigation.navigate('Register');
     }
 
     return (
@@ -53,11 +58,9 @@ const Login = ({ navigation }) => {
                 onPress={() => login()}
             />
 
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', marginTop: 24}}>
-                <TouchableOpacity onPress={() => navigation.navigate('Register')} >
-                    <Text style={{textDecorationLine: "underline"}}>Não tenho conta</Text>
-                </TouchableOpacity>
-            </View>
+            <TouchableOpacity onPress={handleNavigation} style={{ alignItems: 'center', justifyContent: 'center', marginTop: 24 }} >
+                <Text style={{ textDecorationLine: "underline" }}>Não tenho conta</Text>
+            </TouchableOpacity>
         </View>
     );
 }

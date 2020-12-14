@@ -12,7 +12,7 @@ const Team = ({ navigation }) => {
     async function getTeams() {
         try {
             let response = await fetch(
-                'https://localhost:44331/api/Team', {
+                'https://192.168.1.67:44331/api/Team', {
                 headers: {
                     "Authorization": `Bearer ${global.jwt}`
                 }

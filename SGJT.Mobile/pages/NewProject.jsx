@@ -20,7 +20,7 @@ const NewProject = ({ navigation }) => {
 
     async function saveProject() {
         let response = await fetch(
-            'https://localhost:44331/api/Project', {
+            'https://192.168.1.67:44331/api/Project', {
             method: 'POST',
             headers: {
                 "Accept": "application/json",

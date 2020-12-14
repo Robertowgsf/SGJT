@@ -12,7 +12,7 @@ const Project = ({ navigation }) => {
     async function getProjects() {
         try {
             let response = await fetch(
-                'https://localhost:44331/api/Project', {
+                'https://192.168.1.67:44331/api/Project', {
                 headers: {
                     "Authorization": `Bearer ${global.jwt}`
                 }

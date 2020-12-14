@@ -12,7 +12,7 @@ const NewTeam = ({ navigation }) => {
 
     async function saveTeam() {
         let response = await fetch(
-            'https://localhost:44331/api/Team', {
+            'https://192.168.1.67:44331/api/Team', {
             method: 'POST',
             headers: {
                 "Accept": "application/json",

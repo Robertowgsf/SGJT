@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Button } from 'react-native';
 import { Input } from 'react-native-elements';
 import styles from '../assets/styles';
+import global from '../global';
 
 const Profile = () => {
     return (
@@ -10,6 +11,7 @@ const Profile = () => {
                 containerStyle={styles.bottomSpacer}
                 label="Nome"
                 labelStyle={styles.label}
+                value={global.username}
             /><Input
                 containerStyle={styles.bottomSpacer}
                 label="Email"

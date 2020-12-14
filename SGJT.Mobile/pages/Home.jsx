@@ -24,7 +24,7 @@ const Home = () => {
     async function getProjects() {
         try {
             let response = await fetch(
-                'https://localhost:44331/api/Project', {
+                'https://192.168.1.67:44331/api/Project', {
                 headers: {
                     "Authorization": `Bearer ${global.jwt}`
                 }
@@ -43,7 +43,7 @@ const Home = () => {
 
     async function registerWorkingTimeRecord() {
         let response = await fetch(
-            'https://localhost:44331/api/WorkingTimeRecord/registerWorkingTimeRecord', {
+            'https://192.168.1.67:44331/api/WorkingTimeRecord/registerWorkingTimeRecord', {
             method: 'POST',
             headers: {
                 "Accept": "application/json",
