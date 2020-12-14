@@ -3,7 +3,7 @@
   "displayName": "SGJT.Mobile",
   "expo": {
     "name": "SGJT.Mobile",
-    "slug": "SGJT.Mobile",
+    "slug": "sgjt-mobile",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
